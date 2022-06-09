@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>game</ion-title>
+
+    <ion-button slot="end" fill="clear" (click)="reorder=!reorder" [color]="reorder?'warning':'success'">
+      <ion-icon name="reorder-three" slot="end"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" fill="clear" routerLink="/settings">
+      <ion-icon name="cog"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-reorder-group [disabled]="! reorder" (ionItemReorder)="reorderAnimal($event)">
+      <ion-item *ngFor="let animal of animalList" (click)="guess(animal)">
+        <ion-label>
+          <h3>{{ animal.title }}</h3>
+          <p>{{ animal.desc }}</p>
+        </ion-label>
+
+        <ion-avatar slot="start">
+          <ion-img src="/assets/{{ animal.image }}"></ion-img>
+        </ion-avatar>
+
+        <ion-reorder slot="end"></ion-reorder>
+
+      </ion-item>
+    </ion-reorder-group>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="ion-padding">
+    <ion-button expand="full" shape="round" (click)="play()"
+                [color]="audio?'success':'warning'">
+      JOUER UN SON
+      <ion-icon name="play" slot="end"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
